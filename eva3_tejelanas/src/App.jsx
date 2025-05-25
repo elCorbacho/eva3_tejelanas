@@ -1,3 +1,4 @@
+import React from 'react';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import QuienesSomos from './components/QuienesSomos';
@@ -8,9 +9,9 @@ import FAQ from './components/FAQ';
 import Footer from './components/Footer';
 import './styles.css';
 
-const App = () => {
+function App() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="App">
       <Header />
       <Hero />
       <QuienesSomos />
@@ -21,6 +22,6 @@ const App = () => {
       <Footer />
     </div>
   );
-};
+}
 
 export default App;

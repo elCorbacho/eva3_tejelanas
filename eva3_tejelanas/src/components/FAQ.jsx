@@ -1,24 +1,4 @@
-import { useState } from 'react';
-import { ChevronDown } from 'lucide-react';
-
-const AccordionItem = ({ question, answer, isOpen, onToggle }) => {
-  return (
-    <div className="bg-white rounded-lg shadow-md border-0 overflow-hidden">
-      <button 
-        onClick={onToggle}
-        className="w-full px-6 py-4 text-left font-semibold text-gray-900 hover:bg-rose-50 transition-colors duration-200 flex justify-between items-center"
-      >
-        {question}
-        <ChevronDown className={`h-4 w-4 shrink-0 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} />
-      </button>
-      {isOpen && (
-        <div className="px-6 pb-4 text-gray-600 leading-relaxed">
-          {answer}
-        </div>
-      )}
-    </div>
-  );
-};
+import React, { useState } from 'react';
 
 const FAQ = () => {
   const [openItem, setOpenItem] = useState(null);
@@ -63,32 +43,43 @@ const FAQ = () => {
   };
 
   return (
-    <section id="faq" className="py-20 bg-gradient-to-b from-white to-rose-50">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="font-display text-4xl font-bold text-gray-900 mb-4">
+    <section id="faq" className="section-padding bg-light-gradient">
+      <div className="container">
+        <div className="text-center mb-5">
+          <h2 className="font-display display-4 fw-bold mb-4">
             Preguntas <span className="text-gradient">Frecuentes</span>
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="fs-5 text-muted-custom mx-auto" style={{maxWidth: '600px'}}>
             Resolvemos las dudas más comunes sobre nuestros productos y servicios. 
             Si no encuentras tu respuesta, ¡contáctanos!
           </p>
         </div>
 
-        <div className="max-w-4xl mx-auto space-y-4">
-          {faqs.map((faq, index) => (
-            <AccordionItem
-              key={index}
-              question={faq.question}
-              answer={faq.answer}
-              isOpen={openItem === index}
-              onToggle={() => handleToggle(index)}
-            />
-          ))}
+        <div className="row justify-content-center">
+          <div className="col-lg-8">
+            {faqs.map((faq, index) => (
+              <div key={index} className="faq-item">
+                <button 
+                  className="faq-button"
+                  onClick={() => handleToggle(index)}
+                >
+                  {faq.question}
+                  <span className={`ms-2 ${openItem === index ? 'rotate-180' : ''}`}>
+                    {openItem === index ? '▲' : '▼'}
+                  </span>
+                </button>
+                {openItem === index && (
+                  <div className="faq-answer">
+                    {faq.answer}
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
         </div>
 
-        <div className="text-center mt-12">
-          <p className="text-gray-600 mb-4">¿No encontraste lo que buscabas?</p>
+        <div className="text-center mt-5">
+          <p className="text-muted-custom mb-3">¿No encontraste lo que buscabas?</p>
           <button 
             onClick={() => {
               const element = document.getElementById('contacto');
@@ -96,7 +87,7 @@ const FAQ = () => {
                 element.scrollIntoView({ behavior: 'smooth' });
               }
             }}
-            className="bg-gradient-to-r from-rose-500 to-blush-500 hover:from-rose-600 hover:to-blush-600 text-white font-semibold px-8 py-3 rounded-full transition-all duration-200 shadow-lg hover:shadow-xl"
+            className="btn btn-primary-custom btn-lg"
           >
             Pregúntanos directamente
           </button>

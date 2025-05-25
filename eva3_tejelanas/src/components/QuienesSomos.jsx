@@ -1,55 +1,54 @@
+import React from 'react';
+
 const QuienesSomos = () => {
   return (
-    <section id="quienes-somos" className="py-20 bg-white">
-      <div className="container mx-auto px-4">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Image */}
-          <div className="relative">
-            <div className="rounded-3xl overflow-hidden shadow-xl">
-              <img 
-                src="https://images.unsplash.com/photo-1586075010923-2dd4570fb338?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                alt="Vivi tejiendo"
-                className="w-full h-[400px] object-cover"
-              />
-            </div>
-            <div className="absolute -bottom-8 -right-8 bg-rose-100 rounded-2xl p-6 shadow-lg">
-              <div className="text-center">
-                <div className="font-display text-3xl font-bold text-rose-600">5+</div>
-                <div className="text-sm text-gray-600">Años de experiencia</div>
+    <section id="quienes-somos" className="section-padding">
+      <div className="container">
+        <div className="row align-items-center">
+          <div className="col-lg-6">
+            <div className="position-relative">
+              <div className="about-image">
+                <img 
+                  src="https://scontent.fscl8-1.fna.fbcdn.net/v/t39.30808-6/468497018_1104329051695886_2122611103586783923_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeFfvt0WxJoNlLwlNRMSzdbXWbXY_mRE6_JZtdj-ZETr8igicKD1GpaaOr7YghoNPeE&_nc_ohc=GTHHBK_LYVwQ7kNvwEueI5l&_nc_oc=AdkLTTKzMmRILSWVsSr7WEQhnzK5HDpiKgEMF7ZstCFEGZsbBTmdLhL3y09XB3j6DwY&_nc_zt=23&_nc_ht=scontent.fscl8-1.fna&_nc_gid=Entk2y7TFVAPxLZR6A7hMA&oh=00_AfJL6F1_6UM3xfQmXj8m5c9DayufhXHYf575ECDjWV6kBw&oe=68387A79"
+                  alt="Vivi tejiendo"
+                  className="img-fluid"
+                />
+              </div>
+              <div className="about-badge">
+                <p className="about-badge-number">5+</p>
+                <p className="about-badge-text">Años de experiencia</p>
               </div>
             </div>
           </div>
 
-          {/* Content */}
-          <div>
-            <h2 className="font-display text-4xl font-bold text-gray-900 mb-6">
+          <div className="col-lg-6 mt-5 mt-lg-0">
+            <h2 className="font-display display-4 fw-bold mb-4">
               Conoce a <span className="text-gradient">Vivi</span>
             </h2>
-            <p className="text-lg text-gray-600 mb-6 leading-relaxed">
+            <p className="fs-5 text-muted-custom mb-4">
               Soy Vivi, una apasionada artesana del tejido con más de 5 años de experiencia 
               creando piezas únicas. Mi amor por los hilos y las agujas nació desde pequeña, 
               inspirada por las tradiciones familiares.
             </p>
-            <p className="text-lg text-gray-600 mb-8 leading-relaxed">
+            <p className="fs-5 text-muted-custom mb-5">
               Cada producto que creo lleva un pedacito de mi corazón. Utilizo solo materiales 
               de la más alta calidad y técnicas tradicionales que he perfeccionado a lo largo 
               de los años. Mi objetivo es que cada cliente se sienta especial con una pieza 
               única y llena de amor.
             </p>
 
-            {/* Stats */}
-            <div className="grid grid-cols-3 gap-6">
-              <div className="text-center">
-                <div className="font-display text-2xl font-bold text-rose-600 mb-2">200+</div>
-                <div className="text-sm text-gray-600">Productos creados</div>
+            <div className="row text-center">
+              <div className="col-4">
+                <p className="stat-number">200+</p>
+                <p className="stat-label">Productos creados</p>
               </div>
-              <div className="text-center">
-                <div className="font-display text-2xl font-bold text-rose-600 mb-2">150+</div>
-                <div className="text-sm text-gray-600">Clientes felices</div>
+              <div className="col-4">
+                <p className="stat-number">150+</p>
+                <p className="stat-label">Clientes felices</p>
               </div>
-              <div className="text-center">
-                <div className="font-display text-2xl font-bold text-rose-600 mb-2">100%</div>
-                <div className="text-sm text-gray-600">Artesanal</div>
+              <div className="col-4">
+                <p className="stat-number">100%</p>
+                <p className="stat-label">Artesanal</p>
               </div>
             </div>
           </div>

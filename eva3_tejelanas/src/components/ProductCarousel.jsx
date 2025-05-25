@@ -1,35 +1,34 @@
-import { useState, useEffect } from 'react';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
 
 const products = [
   {
     id: 1,
     name: "Suéter de Lana Merino",
-    image: "https://images.unsplash.com/photo-1551893750-5c4e64f7af71?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+    image: "https://espacioakasa.cl/wp-content/uploads/2024/08/DSC_4034-scaled.jpg",
     description: "Suéter artesanal de lana merino, perfecto para el invierno."
   },
   {
     id: 2,
     name: "Bufanda Multicolor",
-    image: "https://images.unsplash.com/photo-1601924333706-4f4cce3c8da6?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+    image: "https://i.pinimg.com/474x/e6/2e/00/e62e00dff058f6514a8682f1a007ba6d.jpg",
     description: "Bufanda tejida con patrones únicos y colores vibrantes."
   },
   {
     id: 3,
     name: "Gorro de Alpaca",
-    image: "https://images.unsplash.com/photo-1578909186962-fd3c7b6d3dec?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+    image: "https://cdnx.jumpseller.com/alpakia/image/16807726/thumb/1079/1079?1635364739",
     description: "Gorro suave y cálido hecho con lana de alpaca premium."
   },
   {
     id: 4,
     name: "Chaleco Artesanal",
-    image: "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+    image: "https://www.artesaniaschiloe.cl/wp-content/uploads/2024/08/chaleco-tierra.webp",
     description: "Chaleco elegante con diseños tradicionales únicos."
   },
   {
     id: 5,
     name: "Mantita de Bebé",
-    image: "https://images.unsplash.com/photo-1519069792167-26c1b7b43d45?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+    image: "https://cdn.wallapop.com/images/10420/i8/bw/__/c10420p1102383147/i5415248941.jpg?pictureSize=W640",
     description: "Mantita suave y delicada, perfecta para los más pequeños."
   }
 ];
@@ -40,9 +39,9 @@ const ProductCarousel = () => {
 
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth < 640) {
+      if (window.innerWidth < 576) {
         setItemsPerView(1);
-      } else if (window.innerWidth < 1024) {
+      } else if (window.innerWidth < 992) {
         setItemsPerView(2);
       } else {
         setItemsPerView(3);
@@ -80,23 +79,22 @@ const ProductCarousel = () => {
   };
 
   return (
-    <section id="productos" className="py-20 bg-gradient-to-b from-white to-rose-50">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="font-display text-4xl font-bold text-gray-900 mb-4">
+    <section id="productos" className="section-padding bg-light-gradient">
+      <div className="container">
+        <div className="text-center mb-5">
+          <h2 className="font-display display-4 fw-bold mb-4">
             Nuestros <span className="text-gradient">Productos</span>
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="fs-5 text-muted-custom mx-auto" style={{maxWidth: '600px'}}>
             Cada pieza es única y está tejida con amor y dedicación. 
             Descubre nuestra colección de productos artesanales.
           </p>
         </div>
 
-        <div className="relative">
-          {/* Carousel Container */}
-          <div className="overflow-hidden rounded-2xl">
+        <div className="position-relative">
+          <div className="overflow-hidden">
             <div 
-              className="flex transition-transform duration-500 ease-in-out"
+              className="d-flex transition-all"
               style={{ 
                 transform: `translateX(-${currentIndex * (100 / itemsPerView)}%)`,
                 width: `${(products.length / itemsPerView) * 100}%`
@@ -105,28 +103,25 @@ const ProductCarousel = () => {
               {products.map((product) => (
                 <div 
                   key={product.id}
-                  className="flex-shrink-0 px-3"
+                  className="px-2"
                   style={{ width: `${100 / products.length}%` }}
                 >
-                  <div className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
-                    <div className="relative overflow-hidden">
+                  <div className="card product-card h-100">
+                    <div className="product-image">
                       <img 
                         src={product.image}
                         alt={product.name}
-                        className="w-full h-64 object-cover transition-transform duration-500 hover:scale-110"
+                        className="card-img-top"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
                     </div>
-                    <div className="p-6">
-                      <h3 className="font-display text-xl font-semibold text-gray-900 mb-3">
-                        {product.name}
-                      </h3>
-                      <p className="text-gray-600 mb-4 line-clamp-2">
+                    <div className="card-body d-flex flex-column">
+                      <h5 className="product-title">{product.name}</h5>
+                      <p className="card-text text-muted-custom flex-grow-1">
                         {product.description}
                       </p>
                       <button 
                         onClick={() => scrollToContacto(product.name)}
-                        className="w-full bg-gradient-to-r from-rose-500 to-blush-500 hover:from-rose-600 hover:to-blush-600 text-white font-medium py-2 rounded-full transition-all duration-200"
+                        className="btn btn-primary-custom mt-auto"
                       >
                         Consultar Precio
                       </button>
@@ -137,34 +132,30 @@ const ProductCarousel = () => {
             </div>
           </div>
 
-          {/* Navigation Buttons */}
           <button
             onClick={prevSlide}
-            className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-gray-600 hover:text-rose-600 p-3 rounded-full shadow-lg transition-all duration-200 z-10"
+            className="carousel-nav-btn carousel-nav-prev"
             disabled={currentIndex === 0}
           >
-            <ChevronLeft size={24} />
+            &#8249;
           </button>
           
           <button
             onClick={nextSlide}
-            className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-gray-600 hover:text-rose-600 p-3 rounded-full shadow-lg transition-all duration-200 z-10"
+            className="carousel-nav-btn carousel-nav-next"
             disabled={currentIndex + itemsPerView >= products.length}
           >
-            <ChevronRight size={24} />
+            &#8250;
           </button>
         </div>
 
-        {/* Dots Indicator */}
-        <div className="flex justify-center mt-8 space-x-2">
+        <div className="carousel-dots">
           {Array.from({ length: Math.ceil(products.length / itemsPerView) }).map((_, index) => (
             <button
               key={index}
               onClick={() => setCurrentIndex(index)}
-              className={`w-3 h-3 rounded-full transition-all duration-200 ${
-                Math.floor(currentIndex / itemsPerView) === index 
-                  ? 'bg-rose-500 w-8' 
-                  : 'bg-gray-300 hover:bg-gray-400'
+              className={`carousel-dot ${
+                Math.floor(currentIndex / itemsPerView) === index ? 'active' : ''
               }`}
             />
           ))}
