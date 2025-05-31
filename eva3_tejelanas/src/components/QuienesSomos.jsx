@@ -9,7 +9,7 @@ const QuienesSomos = () => {
             <div className="position-relative">
               <div className="about-image">
                 <img 
-                  src="https://scontent.fscl8-1.fna.fbcdn.net/v/t39.30808-6/468497018_1104329051695886_2122611103586783923_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeFfvt0WxJoNlLwlNRMSzdbXWbXY_mRE6_JZtdj-ZETr8igicKD1GpaaOr7YghoNPeE&_nc_ohc=GTHHBK_LYVwQ7kNvwEueI5l&_nc_oc=AdkLTTKzMmRILSWVsSr7WEQhnzK5HDpiKgEMF7ZstCFEGZsbBTmdLhL3y09XB3j6DwY&_nc_zt=23&_nc_ht=scontent.fscl8-1.fna&_nc_gid=Entk2y7TFVAPxLZR6A7hMA&oh=00_AfJL6F1_6UM3xfQmXj8m5c9DayufhXHYf575ECDjWV6kBw&oe=68387A79"
+                  src="2.jpg"
                   alt="Vivi tejiendo"
                   className="img-fluid"
                 />

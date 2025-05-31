@@ -49,7 +49,7 @@ const Hero = () => {
             <div className="position-relative">
               <div className="hero-image">
                 <img 
-                  src="https://scontent.fscl8-1.fna.fbcdn.net/v/t39.30808-6/471236286_1123067079822083_773043596411567968_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeECNNrshCKgPvcfJLxfeJJ7IA7sH963pFEgDuwf3rekUeU0GblQE49ZbbO3SgG-xGQ&_nc_ohc=RtzjWbMLrLMQ7kNvwFAUh8f&_nc_oc=AdmxcpVX0wAnKqaMOH_yWUucLKDLEoZdaNgPavu6Rz5Rjc34dVI1_fOQUJ-47X31Mog&_nc_zt=23&_nc_ht=scontent.fscl8-1.fna&_nc_gid=xrJYOEerOi24vVYusPE0Uw&oh=00_AfJbBz2dLeyPCG4guUW3d7JzSmMGP42c99YoaBWKk-VouQ&oe=6838773B"
+                  src="1.jpg"
                   alt="Productos tejidos artesanales"
                   className="img-fluid"
                 />
