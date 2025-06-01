@@ -74,7 +74,7 @@ const ContactForm = () => {
               </div>
               <div>
                 <p className="fw-semibold mb-1">Teléfono</p>
-                <p className="text-muted-custom mb-0">+56 9 1234 5678</p>
+                <p className="text-muted-custom mb-0">+56 9 7632 2314</p>
               </div>
             </div>
 
@@ -84,7 +84,7 @@ const ContactForm = () => {
               </div>
               <div>
                 <p className="fw-semibold mb-1">Ubicación</p>
-                <p className="text-muted-custom mb-0">Santiago, Chile</p>
+                <p className="text-muted-custom mb-0">Carlos Leon Briceño #1002 local 4, Laguna, Zapallar</p>
               </div>
             </div>
 
