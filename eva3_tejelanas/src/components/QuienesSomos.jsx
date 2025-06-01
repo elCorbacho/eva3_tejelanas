@@ -1,6 +1,27 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 const QuienesSomos = () => {
+  const [aboutText, setAboutText] = useState('');
+
+  useEffect(() => {
+    fetch('https://www.clinicatecnologica.cl/ipss/tejelanasVivi/api/v1/about-us/', {
+      headers: {
+        'Authorization': `Bearer ipss.get`,
+      },
+    })
+      .then((res) => {
+        if (!res.ok) throw new Error('Error al obtener datos');
+        return res.json();
+      })
+      .then((json) => {
+        setAboutText(json.data);
+      })
+      .catch((err) => {
+        console.error(err);
+        setAboutText('No se pudo cargar la información. Por favor, intente más tarde.');
+      });
+  }, []);
+
   return (
     <section id="quienes-somos" className="section-padding">
       <div className="container">
@@ -8,7 +29,7 @@ const QuienesSomos = () => {
           <div className="col-lg-6">
             <div className="position-relative">
               <div className="about-image">
-                <img 
+                <img
                   src="2.jpg"
                   alt="Vivi tejiendo"
                   className="img-fluid"
@@ -26,15 +47,7 @@ const QuienesSomos = () => {
               Conoce a <span className="text-gradient">Vivi</span>
             </h2>
             <p className="fs-5 text-muted-custom mb-4">
-              Soy Vivi, una apasionada artesana del tejido con más de 5 años de experiencia 
-              creando piezas únicas. Mi amor por los hilos y las agujas nació desde pequeña, 
-              inspirada por las tradiciones familiares.
-            </p>
-            <p className="fs-5 text-muted-custom mb-5">
-              Cada producto que creo lleva un pedacito de mi corazón. Utilizo solo materiales 
-              de la más alta calidad y técnicas tradicionales que he perfeccionado a lo largo 
-              de los años. Mi objetivo es que cada cliente se sienta especial con una pieza 
-              única y llena de amor.
+              {aboutText || 'Cargando información...'}
             </p>
 
             <div className="row text-center">

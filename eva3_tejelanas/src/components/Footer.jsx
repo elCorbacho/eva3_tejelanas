@@ -22,7 +22,7 @@ const Footer = () => {
             </p>
             <div className="footer-social">
               <a 
-                href="https://www.instagram.com/teje_lanas.vivi" 
+                href="https://www.instagram.com/teje_lanas.vivi/" 
                 target="_blank" 
                 rel="noopener noreferrer"
               >
@@ -31,7 +31,7 @@ const Footer = () => {
               <a href="mailto:teje.lanas.vivi@gmail.com">
                 📧
               </a>
-              <a href="tel:+56912345678">
+              <a href="tel:+56976322314">
                 📞
               </a>
             </div>
@@ -83,11 +83,11 @@ const Footer = () => {
             </div>
             <div className="mb-3" style={{color: '#d1d5db'}}>
               <p className="fw-medium text-white mb-1">Teléfono:</p>
-              <p className="mb-0">+56 9 1234 5678</p>
+              <p className="mb-0">+56 9 7632 2314</p>
             </div>
             <div style={{color: '#d1d5db'}}>
               <p className="fw-medium text-white mb-1">Ubicación:</p>
-              <p className="mb-0">Santiago, Chile</p>
+              <p className="mb-0">Carlos Leon Briceño #1002 local 4, Laguna, Zapallar</p>
             </div>
           </div>
         </div>

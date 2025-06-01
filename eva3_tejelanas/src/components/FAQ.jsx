@@ -1,46 +1,43 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const FAQ = () => {
   const [openItem, setOpenItem] = useState(null);
-
-  const faqs = [
-    {
-      question: "¿Cuánto tiempo toma hacer un tejido personalizado?",
-      answer: "El tiempo depende de la complejidad de la pieza. Un gorro simple puede tomar 3-5 días, mientras que un suéter completo puede requerir 2-3 semanas. Siempre te daremos un tiempo estimado al confirmar tu pedido."
-    },
-    {
-      question: "¿Qué tipos de lana utilizas?",
-      answer: "Trabajamos con lanas de alta calidad incluyendo lana merino, alpaca, algodón orgánico y mezclas especiales. Todas nuestras lanas son seleccionadas por su suavidad, durabilidad y colores vibrantes."
-    },
-    {
-      question: "¿Haces envíos a todo Chile?",
-      answer: "Sí, realizamos envíos a todo Chile a través de Chilexpress y Starken. Los envíos dentro de Santiago tienen un costo de $3.000 y a regiones desde $5.000, dependiendo del tamaño y peso del paquete."
-    },
-    {
-      question: "¿Puedo elegir los colores y diseños?",
-      answer: "¡Por supuesto! Nos especializamos en piezas personalizadas. Puedes elegir colores, patrones y hasta enviar referencias de diseños que te gusten. Trabajamos contigo para crear exactamente lo que imaginas."
-    },
-    {
-      question: "¿Ofreces garantía en tus productos?",
-      answer: "Todos nuestros productos tienen garantía de 30 días por defectos de fabricación. Si hay algún problema con las costuras o la calidad del tejido, lo reparamos sin costo adicional."
-    },
-    {
-      question: "¿Cómo puedo cuidar mi prenda tejida?",
-      answer: "Te entregamos instrucciones específicas de cuidado con cada prenda. Generalmente recomendamos lavado a mano con agua fría y secar en horizontal. Algunas piezas pueden lavarse en máquina en ciclo delicado."
-    },
-    {
-      question: "¿Aceptas cambios o devoluciones?",
-      answer: "Para piezas personalizadas no aceptamos devoluciones, pero sí ofrecemos ajustes si las medidas no son correctas. Para productos estándar, aceptamos cambios dentro de 7 días si están en perfectas condiciones."
-    },
-    {
-      question: "¿Qué formas de pago aceptas?",
-      answer: "Aceptamos transferencia bancaria, Mercado Pago, y efectivo en entregas presenciales en Santiago. Para pedidos personalizados solicitamos un 50% de adelanto para comenzar el trabajo."
-    }
-  ];
+  const [faqs, setFaqs] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   const handleToggle = (index) => {
     setOpenItem(openItem === index ? null : index);
   };
+
+  useEffect(() => {
+    fetch('https://www.clinicatecnologica.cl/ipss/tejelanasVivi/api/v1/faq/', {
+      headers: {
+        'Authorization': 'Bearer ipss.get',
+      },
+    })
+      .then((res) => {
+        if (!res.ok) throw new Error('Error al obtener datos');
+        return res.json();
+      })
+      .then((json) => {
+        // Filtrar solo los que están activos
+        const activeFaqs = json.data.filter(faq => faq.activo);
+        // Mapear para ajustar nombres a los que usa el componente
+        const formattedFaqs = activeFaqs.map(({ id, titulo, respuesta }) => ({
+          id,
+          question: titulo,
+          answer: respuesta,
+        }));
+        setFaqs(formattedFaqs);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error(err);
+        setError('No se pudo cargar la información. Por favor, intente más tarde.');
+        setLoading(false);
+      });
+  }, []);
 
   return (
     <section id="faq" className="section-padding bg-light-gradient">
@@ -49,7 +46,7 @@ const FAQ = () => {
           <h2 className="font-display display-4 fw-bold mb-4">
             Preguntas <span className="text-gradient">Frecuentes</span>
           </h2>
-          <p className="fs-5 text-muted-custom mx-auto" style={{maxWidth: '600px'}}>
+          <p className="fs-5 text-muted-custom mx-auto" style={{ maxWidth: '600px' }}>
             Resolvemos las dudas más comunes sobre nuestros productos y servicios. 
             Si no encuentras tu respuesta, ¡contáctanos!
           </p>
@@ -57,8 +54,10 @@ const FAQ = () => {
 
         <div className="row justify-content-center">
           <div className="col-lg-8">
-            {faqs.map((faq, index) => (
-              <div key={index} className="faq-item">
+            {loading && <p>Cargando preguntas frecuentes...</p>}
+            {error && <p className="text-danger">{error}</p>}
+            {!loading && !error && faqs.map((faq, index) => (
+              <div key={faq.id} className="faq-item">
                 <button 
                   className="faq-button"
                   onClick={() => handleToggle(index)}
